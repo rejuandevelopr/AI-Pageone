@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> AI Investigation </title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css">
+    <style>
+         @import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;0,900;1,400&display=swap');
+         #ai_page_one{
+            padding-top: 10px;
+            padding-bottom: 10px;
+         }
+         .upload_c{
+            background-color: rgba(0, 152, 244, 1);
+         }
+         .nav_main{
+            background-color: rgba(0, 152, 244, 1);
+         }
+
+         /* Uplaod */
+         .upload_section{
+            padding: 10px 5px 5px 5px;
+         }
+         .upload_section span i{
+              font-size: 40px;
+         }
+         .upload_section input{
+             margin-left: 10px;
+             width: 100%;
+             border: 0;
+         }
+         /* Time */
+         .time_section{
+            padding: 10px 5px 5px 5px;
+         }
+         .time_section div{
+              width: 190px;
+              height: 35px;
+              margin-left: 10px;
+         }
+         .time_section div input{
+            border: 0;
+         }
+         /* Camera */
+         .camera_select{
+            padding: 10px 5px 5px 5px;
+         }
+         .camera_select select{
+            height: 35px;
+            margin-left: 10px;
+            border: 0;
+            width: 220px;
+         }
+         /* location */
+        .location_section{
+            padding: 10px 5px 5px 5px;
+        }
+        .location_section select{
+            margin-left: 10px;
+            width: 190px;
+            height: 35px;
+            border: 0;
+        }
+
+        /* Picture section */
+        .pics_title{
+            background-color: rgba(0, 152, 244, 1);
+        }
+        .pics_title div{
+            font-family: Lato;
+            font-size: 18px;
+            font-weight: 400;
+            line-height: 20px;
+            letter-spacing: 0em;
+            padding: 10px;
+            color: white;
+        }
+
+        /* drop_down */
+        .btn-secondary{
+           background-color: white !important;
+           border-color: white !important;
+           color: black !important;
+           border-radius: 0;
+           
+        }
+
+        .dropdown-item:active{
+            background-color: transparent !important;
+        }
+        .dropdown-menu{
+            padding: 10px;
+        }
+
+        /* Table */
+        table tr td{
+            border: 1px solid black;
+            height: 180px;
+        }
+        .first_table tr td:first-child{
+            border: 0;
+            position: relative;
+        }
+        .first_table tr td:first-child span{
+            position: absolute;
+            top: 0;
+            right: 0;
+            border-left: 1px solid black;
+            border-bottom: 1px solid black;
+            padding: 7px;
+        }
+        table th{
+            font-family: Lato;
+            font-size: 18px;
+            font-weight: 400;
+            line-height: 20px;
+            letter-spacing: 0em;
+            text-align: center;
+            border: 1px solid black;
+            background-color: rgba(217, 217, 217, 1) !important;
+        }
+        /* table th:first-child{
+            font-size: 12px;
+        } */
+        table{
+            width: 100%;
+        }
+
+        /* Checkbox */
+        .custom-checkbox {
+  display: inline-block;
+  position: relative;
+  width: 20px;
+  height: 20px;
+}
+
+.custom-checkbox input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.checkbox-icon {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 20px;
+  height: 20px;
+  background-color: white; /* Start with white background */
+  border: 2px solid orange; /* Add an orange border */
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s, border-color 0.3s; /* Add transition effects */
+}
+
+.checkbox-icon::after {
+  content: "\2713"; /* Checkmark Unicode character */
+  color: white;
+  font-size: 18px;
+  display: none;
+}
+
+.custom-checkbox input:checked + .checkbox-icon {
+  background-color: orange; /* Change background color on checked */
+  border-color: orange; /* Change border color on checked */
+}
+
+.custom-checkbox input:checked + .checkbox-icon::after {
+  display: block;
+}
+
+
+/* Checkbox two */
+.checkbox_ttwo{
+    width: 100% !important;
+}
+
+.inside_checkbox{
+    list-style: none;
+}
+.checkbox-icon_two{
+  background-color: white !important; 
+  border-color: rgba(64, 246, 0, 1) !important; 
+}
+.custom-checkbox input:checked + .checkbox-icon_two {
+  background-color: rgba(64, 246, 0, 1) !important; 
+  border-color: rgba(64, 246, 0, 1) !important; 
+}
+#customDropdown_two{
+    width: 40px;
+}
+#customDropdown_two ul{
+    width: 100%;
+}
+
+        /* Responsive */
+        @media screen and (max-width:1400px){
+            .time_section div{
+                width: 130px;
+            }
+            .camera_select select{
+                width: 130px;
+            }
+            .location_section select{
+                width: 130px;
+            }
+        }
+
+        @media screen and (max-width:992px){
+            .time_section div input {
+                width: 142%;
+            }
+            #customDropdown_two{
+                width: 20px !important;
+                font-size: 14px;
+            }
+            .upload_section span i {
+                font-size: 35px;
+            }
+        }
+        @media screen and (max-width:768px){
+            .time_section div {
+               width: 50%;
+            }
+            .camera_select select {
+               width: 86%;
+            }
+            .location_section select {
+               width: 84% !important;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <section id="ai_page_one">
+        <div class="container">
+
+            <div class="row nav_main">
+                <div class="col-md-3">
+                    <div class="upload_main">
+                        <div class="upload_c">
+                            <div class="d-flex upload_section">
+                                <span><a href="#"><i class="fa-regular fa-image" style="color: #ffffff;"></i></a></span>
+                                <input type="submit" value="Upload DB Image" name="submit">
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="upload_main">
+                        <div class="upload_c">
+                            <div class="d-flex time_section">
+                                <span>Time/Date:</i></span>
+                                <div class="d-flex">
+                                    <input type="date" id="startDateInput">
+                                    <input type="time" id="startTimeInput">
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="upload_main">
+                        <div class="upload_c">
+                            <div class="d-flex camera_select">
+                                <span>FILTER:</i></span>
+                                <div class="ms-2 drop_down">
+                                    <a id="dropdownBtn" class="dropdown btn btn-secondary dropdown-toggle" href="#" role="button">
+                                        Select
+                                    </a>
+                                    <ul id="customDropdown" class="dropdown-menu">
+                                        <li>
+                                            <label class="custom-checkbox d-flex align-items-center">
+                                                <input id="checkboxInput" type="checkbox">
+                                                <span class="checkbox-icon"></span>
+                                                <span style="margin-left: 26px;">ALL</span>
+                                            </label>
+                                        </li>
+                                        <li style="margin-top: 5px;">
+                                            <label class="custom-checkbox d-flex align-items-center">
+                                                <input id="checkboxInput" type="checkbox">
+                                                <span class="checkbox-icon"></span>
+                                                <span style="margin-left: 26px;">IMAGE</span>
+                                            </label>
+                                        </li>
+                                        <li style="margin-top: 5px;">
+                                            <label class="custom-checkbox d-flex align-items-center">
+                                                <input id="checkboxInput" type="checkbox">
+                                                <span class="checkbox-icon"></span>
+                                                <span style="margin-left: 26px;">CONDITION</span>
+                                            </label>
+                                        </li>
+                                    </ul>
+                                </div>
+                                
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="upload_main">
+                        <div class="upload_c">
+                            <div class="d-flex location_section">
+                                <span>Camera:</i></span>
+                                <div class="ms-2 drop_down">
+                                    <a id="dropdownBtn_two" class="dropdown btn btn-secondary dropdown-toggle" href="#" role="button">
+                                        Select
+                                    </a>
+                                    <ul id="customDropdown_two" class="dropdown-menu">
+                                        <li>
+                                            <label class="custom-checkbox d-flex align-items-center checkbox_ttwo">
+                                                <input id="checkboxInput" type="checkbox">
+                                                <span class="checkbox-icon"></span>
+                                                <span style="margin-left: 26px;">CAMERA A</span>
+                                            </label>
+                                            <ul class="inside_checkbox mt-2">
+                                                <li style="margin-top: 5px;">
+                                                    <label class="custom-checkbox d-flex align-items-center checkbox_ttwo">
+                                                        <input id="checkboxInput" type="checkbox">
+                                                        <span class="checkbox-icon checkbox-icon_two"></span>
+                                                        <span style="margin-left: 26px;">VIDEO 1</span>
+                                                    </label>
+                                                </li>
+                                                <li style="margin-top: 5px;">
+                                                    <label class="custom-checkbox d-flex align-items-center checkbox_ttwo">
+                                                        <input id="checkboxInput" type="checkbox">
+                                                        <span class="checkbox-icon checkbox-icon_two"></span>
+                                                        <span style="margin-left: 26px;">VIDEO 2</span>
+                                                    </label>
+                                                </li>
+                                                <li style="margin-top: 5px;">
+                                                    <label class="custom-checkbox d-flex align-items-center checkbox_ttwo">
+                                                        <input id="checkboxInput" type="checkbox">
+                                                        <span class="checkbox-icon checkbox-icon_two"></span>
+                                                        <span style="margin-left: 26px;">VIDEO 3</span>
+                                                    </label>
+                                                </li>
+                                            </ul>
+                                        </li>
+
+                                        <li class="mt-3">
+                                            <label class="custom-checkbox d-flex align-items-center checkbox_ttwo">
+                                                <input id="checkboxInput" type="checkbox">
+                                                <span class="checkbox-icon"></span>
+                                                <span style="margin-left: 26px;">CAMERA B</span>
+                                            </label>
+                                            <ul class="inside_checkbox mt-2">
+                                                <li style="margin-top: 5px;">
+                                                    <label class="custom-checkbox d-flex align-items-center checkbox_ttwo">
+                                                        <input id="checkboxInput" type="checkbox">
+                                                        <span class="checkbox-icon checkbox-icon_two"></span>
+                                                        <span style="margin-left: 26px;">VIDEO 1</span>
+                                                    </label>
+                                                </li>
+                                                <li style="margin-top: 5px;">
+                                                    <label class="custom-checkbox d-flex align-items-center checkbox_ttwo">
+                                                        <input id="checkboxInput" type="checkbox">
+                                                        <span class="checkbox-icon checkbox-icon_two"></span>
+                                                        <span style="margin-left: 26px;">VIDEO 2</span>
+                                                    </label>
+                                                </li>
+                                                <li style="margin-top: 5px;">
+                                                    <label class="custom-checkbox d-flex align-items-center checkbox_ttwo">
+                                                        <input id="checkboxInput" type="checkbox">
+                                                        <span class="checkbox-icon checkbox-icon_two"></span>
+                                                        <span style="margin-left: 26px;">VIDEO 3</span>
+                                                    </label>
+                                                </li>
+                                            </ul>
+                                        </li>
+
+
+                                        
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="page_onec">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="pics_main mt-3">
+                        <div class="pics_title">
+                            <div><span style="color: rgba(210, 70, 51, 1); margin-right: 6px;">Playback -</span>Walkway A6 -Zone A </div>
+                        </div>
+                        <img class="img-fluid" src="https://i.ibb.co/m8M6CMh/Rectangle-934-1.png" alt="PlaybackPicture">
+                    </div>
+
+                    <div class="pics_main mt-3">
+                        <div class="pics_title">
+                            <div><span style="color: rgba(210, 70, 51, 1); margin-right: 6px;">Playback -</span>Walkway A6 -Zone A </div>
+                        </div>
+                        <img class="img-fluid" src="https://i.ibb.co/5Rndghp/Rectangle-937-1.png" alt="PlaybackPicture">
+                    </div>
+
+                    <div class="pics_main mt-3">
+                        <div class="pics_title">
+                            <div><span style="color: rgba(210, 70, 51, 1); margin-right: 6px;">Playback -</span>Walkway A6 -Zone A </div>
+                        </div>
+                        <img class="img-fluid" src="https://i.ibb.co/fGB8L5W/Rectangle-951.png" alt="PlaybackPicture">
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <div class="row">
+                        <div class="col-xl-4">
+                            <table class="table first_table mt-3">
+                                <thead>
+                                  <tr>
+                                    <th scope="col"><span style="display: inline-block;"><i class="fa-solid fa-sliders" style="color: #000000;"></i></span></th>
+                                    <th scope="col"><div style="display: inline-block;">Date/Time</div> <div style="display: inline-block;"><i class="fa-solid fa-list" style="color: #000000;"></i></div></th>
+                                    <th scope="col">Camera</th>
+                                    
+                                    
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <tr>
+                                    <td><span style="display: inline-block;"><i class="fa-solid fa-sliders" style="color: #000000;"></i></span></td>
+                                    <td ><p style="text-align: center;"><span>10/10/2022</span><br><span>10:10:10</span></p></td>
+                                    <td class="text-center"><img class="img-fluid" src="https://i.ibb.co/mhrLF7N/Rectangle-943.png" alt="TablePicture"></td>
+                                    
+                                    
+                                  </tr>
+                                  <tr>
+                                    <td><span style="display: inline-block; border-top: 1px solid black;"><i class="fa-solid fa-sliders" style="color: #000000;"></i></span></td>
+                                    <td><p style="text-align: center;"><span>10/10/2022</span><br><span>10:10:10</span></p></td>
+                                    <td class="text-center"><img class="img-fluid" src="https://i.ibb.co/MCDWjWT/Rectangle-944.png" alt="TablePicture"></td>
+                                    
+                                    
+                                  </tr>
+                                  <tr>
+                                    <td><span style="display: inline-block; border-top: 1px solid black;"><i class="fa-solid fa-sliders" style="color: #000000;"></i></span></td>
+                                    <td><p style="text-align: center;"><span>10/10/2022</span><br><span>10:10:10</span></p></td>
+                                    <td class="text-center"><img class="img-fluid" src="https://i.ibb.co/svwgczg/Rectangle-945.png" alt="TablePicture"></td>
+                                    
+                                  </tr>
+                                  <tr>
+                                    <td><span style="display: inline-block; border-top: 1px solid black;"><i class="fa-solid fa-sliders" style="color: #000000;"></i></span></td>
+                                    <td><p style="text-align: center;"><span>10/10/2022</span><br><span>10:10:10</span></p></td>
+                                    <td class="text-center"><img class="img-fluid" src="https://i.ibb.co/Zd8mbr0/Rectangle-946.png" alt="TablePicture"></td>
+                                    
+                                   
+                                  </tr>
+                                  <tr>
+                                    <td><span style="display: inline-block; border-top: 1px solid black;"><i class="fa-solid fa-sliders" style="color: #000000;"></i></span></td>
+                                    <td><p style="text-align: center;"><span>10/10/2022</span><br><span>10:10:10</span></p></td>
+                                    <td class="text-center"><img class="img-fluid" src="https://i.ibb.co/QncMdQv/Rectangle-947.png" alt="TablePicture"></td>
+                                    
+                                   
+                                  </tr>
+                                </tbody>
+                            </table>
+
+                        </div>
+
+                        <div class="col-xl-2">
+                            <table class="table mt-3">
+                                <tr>
+                                    <thead>
+                                        <th scope="col">DB Image</th>
+                                    </thead>
+                                </tr>
+                                <tr>
+                                    <td class="text-center">None</td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center"><img class="img-fluid" src="https://i.ibb.co/Zd8mbr0/Rectangle-946.png" alt="TablePicture"></td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center">None</td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center">None</td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center">None</td>
+                                </tr>
+                            </table>
+                        </div>
+
+                        <div class="col-xl-6">
+                            <table class="table mt-3">
+                                <tr>
+                                    <thead>
+                                        <th style="width: 100px;" scope="col">Name <div style="display: inline-block;"><i class="fa-solid fa-list" style="color: #000000;"></i></div></th>
+                                        <th style="width: 150px;" scope="col">Camera Name</th>
+                                        <th scope="col">Location</th>
+                                        <th scope="col">Remarks</th>
+                                    </thead>
+                                </tr>
+
+                                <tr>
+                                    <td class="text-center">Albert Hall</td>
+                                    <td class="text-center">Walkway AO5</td>
+                                    <td class="text-center">Walkway Block A</td>
+                                    <td class="text-center">Walkway Block A</td>
+
+                                </tr>
+                                <tr>
+                                    <td class="text-center">Cristoper</td>
+                                    <td class="text-center">Walkway AO6</td>
+                                    <td class="text-center">Walkway AO6</td>
+                                    <td class="text-center">Walkway AO6</td>
+
+                                </tr>
+                                <tr>
+                                    
+                                    <td class="text-center">Melvin Tan</td>
+                                    <td class="text-center">Melvin Tan</td>
+                                    <td class="text-center">Melvin Tan</td>
+                                    <td class="text-center">Melvin Tan</td>
+
+                                </tr>
+                                <tr>
+                                    <td class="text-center">Remy</td>
+                                    <td class="text-center">Walkway AO6</td>
+                                    <td class="text-center">Walkway Block A</td>
+                                    <td class="text-center">Workers</td>
+
+                                </tr>
+                                <tr>
+                                    <td class="text-center">Johnson</td>
+                                    <td class="text-center">Walkway AO6</td>
+                                    <td class="text-center">Walkway Block A</td>
+                                    <td class="text-center">Workers</td>
+
+                                </tr>
+
+                            </table>
+
+                        </div>
+
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </section>
+    
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            // Prevent the custom dropdown from closing when clicking inside it
+            $("#customDropdown").on("click", function(event) {
+                event.stopPropagation();
+            });
+    
+            // Toggle the custom dropdown on button click
+            $("#dropdownBtn").on("click", function(event) {
+                event.preventDefault();
+                $("#customDropdown").toggleClass("show");
+            });
+    
+            // Close the custom dropdown when clicking anywhere else on the page
+            $(document).on("click", function(event) {
+                if (!$(event.target).closest("#customDropdown, #dropdownBtn").length) {
+                    $("#customDropdown").removeClass("show");
+                }
+            });
+        });
+    </script>
+
+<script>
+    $(document).ready(function() {
+        // Prevent the custom dropdown from closing when clicking inside it
+        $("#customDropdown_two").on("click", function(event) {
+            event.stopPropagation();
+        });
+
+        // Toggle the custom dropdown on button click
+        $("#dropdownBtn_two").on("click", function(event) {
+            event.preventDefault();
+            $("#customDropdown_two").toggleClass("show");
+        });
+
+        // Close the custom dropdown when clicking anywhere else on the page
+        $(document).on("click", function(event) {
+            if (!$(event.target).closest("#customDropdown_two, #dropdownBtn_two").length) {
+                $("#customDropdown_two").removeClass("show");
+            }
+        });
+    });
+</script>
+    
+    
+</body>
+</html>
